@@ -1,0 +1,16 @@
+web:
+  image: django
+  ports:
+   - "8000:8000"
+  volumes:
+   - ../python/:/usr/src/app
+  links:
+   - db
+  working_dir: /usr/src/app
+  command: python manage.py runserver 0.0.0.0:8000
+db:
+  image: tutum/mysql
+  environment:
+  - ON_CREATE_DB=dev
+  - MYSQL_USER=dev
+  - MYSQL_PASS=dev
